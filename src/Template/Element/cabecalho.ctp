@@ -2,7 +2,7 @@
     <a class="sidebar-toggle text-light mr-3">
         <span class="navbar-toggler-icon"></span>
     </a>
-    <a class="navbar-brand" href="#">Buonny</a>
+    <a class="navbar-brand" href="#">Projeto Carro (Vaga Estadão)</a>
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">

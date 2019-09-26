@@ -18,6 +18,8 @@
 
 <?= $this->Form->button(__('Acessar'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 
-<p class="text-center">Esqueceu a senha?</p>
+<p class="text-center">
+    <?= $this->Html->link(__('Cadastrar'), ['Controller' => 'Users', 'action' => 'cadastrar']) ?> - Esqueceu a senha?
+</p>
 
 <?= $this->Form->end() ?>

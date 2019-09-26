@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,11 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('cadastrar', 'logout');
+    }
 
     /**
      * Index method
@@ -117,6 +123,41 @@ class UsersController extends AppController
         $this->set(compact('user'));
      }
 
+     public function alterarFotoPerfil(){
+        $user_id = $this->Auth->user('id');
+        $user = $this->Users->get($user_id, [
+            'contain' => []
+        ]);
+
+        if($this->request->is(['path', 'post', 'put'])){
+            //var_dump($this->request->getData());
+            $nomeImg = $this->request->getData()['imagem']['name'];
+            $imgTmp = $this->request->getData()['imagem']['tmp_name'];
+            $user = $this->Users->newEntity();
+            $user->id = $user_id;
+            $user->imagem = $nomeImg;
+
+            $destino = "files\user\\".$user_id."\\".$nomeImg;
+
+            if(move_uploaded_file($imgTmp, WWW_ROOT. $destino)){
+                if($this->Users->save($user)){
+                    if($this->Auth->user('id') === $user->id){
+                            $user = $this->Users->get($user_id, ['contain' => []
+                        ]);
+                            $this->Auth->setUser($user);    
+                    }
+                    
+                    $this->Flash->success(__('Foto editada com sucesso'));
+                    return $this->redirect(['controller' => 'Users', 'action' => 'perfil']);
+                }else{
+                    $this->Flash->danger(__('Erro: Foto não foi editada com sucesso'));
+                }
+            }
+        }
+
+        $this->set(compact('user'));
+     }
+
     /**
      * Delete method
      *
@@ -154,5 +195,21 @@ class UsersController extends AppController
     {
         $this->Flash->success(__('Deslogado com sucesso!'));
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function cadastrar(){
+
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Usuário cadastrado com sucesso'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->danger(__('Erro: Usuário não foi cadastrado com sucesso'));
+        }
+        $this->set(compact('user'));
+
     }
 }
