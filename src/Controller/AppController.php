@@ -54,6 +54,10 @@ class AppController extends Controller
                 'controller'=>'users',
                 'action'=>'login'
             ],
+            'logoutRedirect'=>[
+                'controller'=>'carros',
+                'action'=>'index'
+            ],
             'authError' => false
         ]);
 

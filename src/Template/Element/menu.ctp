@@ -27,7 +27,7 @@
         <li><?= $this->Html->link(
             '<i class="fas fa-car"></i> Carros',
             [
-                'controller' => 'users',
+                'controller' => 'carros',
                 'action' => 'index'
             ],
             [
