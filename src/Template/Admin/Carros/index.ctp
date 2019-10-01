@@ -32,7 +32,7 @@
                         <?= h($carro->ano) ?>
                     </td>
                     <td class="d-none d-lg-table-cell">
-                        <?= h($user->created) ?>                            
+                        <?= h($carro->created) ?>                            
                     </td>
                     <td>
                         <span class="d-none d-md-block">

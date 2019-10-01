@@ -12,7 +12,7 @@
             ); ?>
         </li>
 
-        <li><?= $this->Html->link(
+        <!-- <li><?= $this->Html->link(
             '<i class="fas fa-users"></i> Usuários',
             [
                 'controller' => 'users',
@@ -22,7 +22,7 @@
                 'escape'=> false
             ]
             ); ?>
-        </li>
+        </li> -->
 
         <li><?= $this->Html->link(
             '<i class="fas fa-car"></i> Carros',

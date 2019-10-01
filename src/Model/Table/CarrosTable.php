@@ -65,7 +65,8 @@ class CarrosTable extends Table
             ->notEmpty('modelo');
 
         $validator
-            ->date('ano')
+            ->scalar('ano')
+            ->maxLength('ano', 100)
             ->requirePresence('ano', 'create')
             ->notEmpty('ano');
 

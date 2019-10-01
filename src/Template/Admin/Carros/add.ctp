@@ -8,11 +8,11 @@
 </div><hr>
 <?= $this->Flash->render() ?>
 
-<?= $this->Form->create($user) ?>
+<?= $this->Form->create($carro) ?>
 <div class="form-row">
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Marca</label>
-        <?= $this->Form->control('marcam', ['class' => 'form-control', 'placeholder' => 'Digite a marca do seu carro', 'label' => false]) ?>
+        <?= $this->Form->control('marca', ['class' => 'form-control', 'placeholder' => 'Digite a marca do seu carro', 'label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Modelo</label>

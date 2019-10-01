@@ -61,7 +61,7 @@ class CarrosController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Erro: Carro não foi cadastrado com sucesso'));
+            $this->Flash->danger(__('Erro: Carro não foi cadastrado com sucesso'));
         }
         $this->set(compact('carro'));
     }
